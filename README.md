@@ -76,13 +76,6 @@
   $ yarn build:h5
 ```
 
-### APPID 和 SECRET
-
-```
-wx7f7cee4842f18a15
-4c219e553527e47a2060d1a55d6637ab
-```
-
 ## FAQ
 
 ### 1. Radio

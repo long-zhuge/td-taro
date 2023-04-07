@@ -1,7 +1,7 @@
 const path = require('path');
 
 const config = {
-  projectName: '试否盲盒',
+  projectName: 'demo',
   date: '2023-1-10',
   designWidth: 750,
   deviceRatio: {

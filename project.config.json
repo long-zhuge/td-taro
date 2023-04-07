@@ -1,8 +1,8 @@
 {
   "miniprogramRoot": "dist/",
-  "projectname": "试否盲盒",
-  "description": "试否盲盒",
-  "appid": "wx7f7cee4842f18a15",
+  "projectname": "Demo",
+  "description": "Demo",
+  "appid": "wxe2331109d8fd3c1f",
   "setting": {
     "urlCheck": false,
     "es6": false,

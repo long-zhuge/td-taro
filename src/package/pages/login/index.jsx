@@ -13,7 +13,7 @@ export default () => {
   return (
     <View className={styles.wrap}>
       <RyImage cdn src="/logo2.png" className={styles.logo} />
-      <View>您正在登录试否</View>
+      <View>您正在登录</View>
       <AtButton
         type="primary"
         className={styles.btn}

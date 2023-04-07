@@ -20,7 +20,7 @@ export default defineAppConfig({
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',
-    navigationBarTitleText: '试否盲盒',
+    navigationBarTitleText: 'Demo',
     navigationBarTextStyle: 'black',
     backgroundColor: '#F7F8FD',
   },
