@@ -37,3 +37,4 @@ dist
 dist/*
 /public/version.json
 config.xml
+.swc
