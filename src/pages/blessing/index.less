@@ -1,0 +1,210 @@
+@import '../../../src/theme';
+
+.wrap {
+  padding: 124px 32px 32px 32px;
+}
+
+.tabs {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 120px;
+  background-color: #fff;
+
+  .tab {
+    padding: 24px 0 22px 0;
+    color: #2E2E2E;
+    font-size: 28px;
+    line-height: 42px;
+    border-bottom: 4px solid #fff;
+  }
+
+  .tab_active {
+    color: #DD2436;
+    border-bottom: 4px solid #DD2436;
+  }
+}
+
+.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.item {
+  margin-bottom: 24px;
+  background-color: #fff;
+  border-radius: 16px;
+
+  .header {
+    padding: 0 28px;
+    color: #808080;
+    font-size: 24px;
+    line-height: 36px;
+
+    .header_item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 4px 20px;
+      border-bottom: 1px solid #EEE;
+    }
+
+    .status {
+      color: #a6a6a6;
+      //display: none;
+    }
+
+    .status_show {
+      display: inherit;
+    }
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+
+    .list_pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 8px;
+    }
+
+    .content_text {
+      color: #121212;
+      font-size: 28px;
+      line-height: 42px;
+    }
+
+    .mode {
+      line-height: 34px;
+      padding-top: 14px;
+    }
+  }
+
+  .footer {
+    padding: 24px 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+
+    .share {
+      position: relative;
+    }
+
+    .hb {
+      position: absolute;
+      top: -34px;
+      left: 0;
+      width: 160px;
+      height: 34px;
+    }
+  }
+}
+
+.item2 {
+  margin-bottom: 24px;
+  background-color: #fff;
+  border-radius: 16px;
+
+  .header {
+    padding: 16px 24px 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 24px;
+    color: #A6A6A6;
+
+    .level {
+      width: 132px;
+      height: 48px;
+    }
+
+    .level_NORMAL {
+      background: url('@{cdn}/prize/lv2_NORMAL.png') no-repeat;
+      background-size: contain;
+    }
+
+    .level_EPIC {
+      background: url('@{cdn}/prize/lv2_EPIC.png') no-repeat;
+      background-size: contain;
+    }
+
+    .level_LEGEND {
+      background: url('@{cdn}/prize/lv2_LEGEND.png') no-repeat;
+      background-size: contain;
+    }
+
+    .level_RARE {
+      background: url('@{cdn}/prize/lv2_RARE.png') no-repeat;
+      background-size: contain;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .question {
+      width: 24px;
+      height: 24px;
+    }
+
+    .goods_logo {
+      background: url('@{cdn}/prize/lv2_FB.png') no-repeat;
+      background-size: contain;
+    }
+  }
+
+  .division {
+    margin: 0 28px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .content {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .prize_icon {
+      width: 120px;
+      height: 120px;
+    }
+
+    .content_text {
+      font-size: 28px;
+      color: #121212;
+      line-height: 42px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .prize_fb {
+      padding-top: 16px;
+      color: #D9800D;
+      font-size: 24px;
+      line-height: 38px;
+    }
+
+    .prize_fb_gray {
+      color: #808080;
+    }
+  }
+
+  .footer {
+    padding: 0 32px 18px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 18px;
+  }
+}
