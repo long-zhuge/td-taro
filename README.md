@@ -4,8 +4,8 @@
 
 ## Taro
 
-- [Taro](https://taro-docs.jd.com/docs/)
-- version：v3.5.12
+- [Taro文档](https://taro-docs.jd.com/docs/)
+- 版本支持：v3.5.12
 - 安装命令：`yarn global add @tarojs/cli@3.5.12`
 
 ## Taro UI
