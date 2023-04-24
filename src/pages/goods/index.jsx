@@ -16,4 +16,4 @@ const Goods = ({ userInfo }) => {
   );
 }
 
-export default connect(({ global }) => ({ ...global }))(Goods);
+export default connect(({ global }) => ({ ...global }), null, null, { forwardRef: true })(Goods);

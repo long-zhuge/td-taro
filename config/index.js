@@ -13,12 +13,12 @@ const config = {
   outputRoot: 'dist',
   plugins: [],
   defineConstants: {
+    'process.env': {},
+    'process.env.ENV': process.env.ENV,
   },
   copy: {
-    patterns: [
-    ],
-    options: {
-    }
+    patterns: [],
+    options: {}
   },
   framework: 'react',
   alias: {
@@ -28,6 +28,7 @@ const config = {
     '@/components': path.resolve(__dirname, '..', 'src/components'),
     '@/store': path.resolve(__dirname, '..', 'src/store'),
     '@/package': path.resolve(__dirname, '..', 'src/package'),
+    '@/taro': path.resolve(__dirname, '..', 'src/utils/taro'),
   },
   mini: {
     postcss: {

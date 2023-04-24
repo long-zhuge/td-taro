@@ -1,20 +1,17 @@
-// 服务器请求地址
-export const base = {
-  develop: 'https://dev.box.imedicpro.com', // 开发环境
-  trial: 'https://dev.box.imedicpro.com',   // 体验环境
-  release: 'https://box.imedicpro.com',  // 线上环境
-};
-export const baseUrl = base[__wxConfig.envVersion];
-// 服务器静态资源请求地址
-export const assetsUrl = `${base.release}/cdn/assets`; // 线上静态文件地址
-export const baseImgUrl = `${baseUrl}/cdn`;
-export const getImgUrl = (path = '') => {
-  if (!!path) {
-    const arr = path.split(',');
+// 框架执行的环境，如 weapp、h5
+const TARO_ENV = process.env.TARO_ENV;
 
-    return `${baseImgUrl}${arr[0].replace('/cdn', '')}`
-  }
-};
+/*
+* 服务器请求地址，变量以 weapp 为准
+* */
+export const hosts = {
+  // 开发环境
+  develop: 'https://dev.box.imedicpro.com',
+  // 体验环境
+  trial: 'https://dev.box.imedicpro.com',
+  // 生产环境
+  release: 'https://box.imedicpro.com',
+}[TARO_ENV === 'weapp' ? __wxConfig?.envVersion : 'develop'];
 
 // 正则
 export const REGEXP = {

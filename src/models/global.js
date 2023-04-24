@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
-  userInfo: {},               // system的用户数据
+  // 用户数据
+  userInfo: {},
 
   navBarHeight: 0,            // 导航栏高度
   menuRight: 0,               // 胶囊距离右方间距（保持左右间距一样）

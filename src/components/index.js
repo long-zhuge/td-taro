@@ -7,7 +7,6 @@ export { default as DescList } from './DescList';
 export { default as Cascader } from './Cascader';
 
 // RY组件
-export { default as RyImage } from './RyImage';
 export { default as RyButton } from './RyButton';
 export { default as RyMask } from './RyMask';
 export { default as RyToast } from './RyToast';

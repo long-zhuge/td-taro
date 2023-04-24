@@ -7,7 +7,8 @@
     "react/sort-comp": ["off"],
     "import/first": ["off"],
     "react/react-in-jsx-scope": ["off"],
-    "import/no-named-as-default": ["off"]
+    "import/no-named-as-default": [0],
+    "import/no-named-as-default-member": [0]
   },
   "parser": "babel-eslint"
   }

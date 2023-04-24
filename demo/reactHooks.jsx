@@ -37,4 +37,4 @@ const Demo = () => {
   );
 }
 
-export default connect(({ global }) => ({ ...global }))(Demo);
+export default connect(({ global }) => ({ ...global }), null, null, { forwardRef: true })(Demo);

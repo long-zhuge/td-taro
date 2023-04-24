@@ -8,7 +8,7 @@
 * */
 
 import React from 'react';
-import Taro from '@tarojs/taro';
+import taro from '@/taro';
 import cx from 'classnames';
 import { connect } from 'react-redux';
 import { View, Text, Image } from '@tarojs/components';
@@ -32,8 +32,8 @@ const Navigation = (props) => {
   const isModeBlack = mode === 'black';
 
   const onBack = () => {
-    if (Taro.getCurrentPages().length > 1) {
-      Taro.navigateBack();
+    if (taro.getCurrentPages().length > 1) {
+      taro.navigateBack();
     } else {
       jump({ method: 'switchTab', url: '/pages/index/index' });
     }

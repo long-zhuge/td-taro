@@ -1,3 +1,8 @@
+## 版本依赖
+
+- nodejs：v14.19.0
+- tarojs：3.5.12
+
 ## 微信文档
 
 - [传送门](https://developers.weixin.qq.com/miniprogram/dev/component)
@@ -34,7 +39,8 @@
 │   ├── store                   // 全局数据（redux）
 │   └── utils                   // 工具集
 │       ├── index.js            // 常用工具
-│       └── request.js          // 请求工具
+│       ├── request.js          // 请求工具
+│       ├── taro.js             // @tarojs/taro 拆解包，方便 h5 编译
 │       └── useService.js       // 指定服务端接口请求
 │   ├── app.config.js           // app 配置文件
 │   ├── app.js                  // 项目入口文件
@@ -109,4 +115,59 @@ text-overflow: ellipsis;
 overflow: hidden;
 text-overflow: ellipsis;
 white-space: nowrap;
+```
+
+### 4. 微信小程序设置全局分享事件
+
+> 写在 app.js 中
+
+```
+// 设置小程序全局默认分享事件
+!function(){
+  var PageTmp = Page;
+
+  Page = function (pageConfig) {
+    // 设置全局默认分享
+    pageConfig = Object.assign({
+      onShareAppMessage(res) {
+        if (res.from === 'menu') {
+          let path;
+
+          try {
+            const pages = Taro.getCurrentPages();
+            const view = pages[pages.length - 1];
+            path = view.data.root.uid.split('$taroTimestamp')[0];
+          } catch (e) {
+            path = '/pages/index/index';
+          }
+
+          return {
+            title: '新春送福，新人盲盒首抽免费',
+            path,
+            imageUrl: `${assetsUrl}/index/global_share.png`,
+          };
+        }
+      },
+    }, pageConfig);
+
+    PageTmp(pageConfig);
+  };
+}();
+```
+
+### 5. Taro.xxx 方法在 h5 模式下无法正常使用和打包
+
+> 可以使用 utils/taro 下的方法
+
+```
+将使用方法拆解成如下方式：
+import { showLoading, request, getStorageSync, hideLoading, setStorageSync, uploadFile } from '@tarojs/taro';
+```
+
+### 6. 关于 hooks
+
+- 可直接使用 @tarojs/taro 包中的方法，如下：
+
+```
+import { useLoad, useReady, useDidShow } from '@tarojs/taro';
 ```

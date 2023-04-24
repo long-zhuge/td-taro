@@ -1,4 +1,4 @@
-import Taro from '@tarojs/taro';
+import taro from '@/taro';
 import store from '@/store';
 import request from '@/utils/request';
 
@@ -31,7 +31,7 @@ export const toast = (params = {}) => {
     ...restParam
   } = params;
 
-  Taro.showToast({
+  taro.showToast({
     title: text,
     icon: 'none',
     duration: duration * 1000,
@@ -41,21 +41,21 @@ export const toast = (params = {}) => {
 
 // 复制到剪切板
 export const setClipboard = (data) => {
-  Taro.setClipboardData({
+  taro.setClipboardData({
     data,
   })
 }
 
 // 拨打电话
 export const phoneCall = (phone) => {
-  Taro.makePhoneCall({
+  taro.makePhoneCall({
     phoneNumber: phone,
   })
 }
 
 // 获取当前加载页面的url
 export const currentRouter = () => {
-  const pages = Taro.getCurrentPages();
+  const pages = taro.getCurrentPages();
   const currentPage = pages[pages.length - 1];
   return currentPage.$component.$router;
 }
@@ -101,12 +101,12 @@ export function noPassByInfo(v = '') {
 
 // 小程序更新提示
 export function weappUpdate() {
-  if (Taro.canIUse('getUpdateManager')) {
-    const updateManager = Taro.getUpdateManager()
+  if (taro.canIUse('getUpdateManager')) {
+    const updateManager = taro.getUpdateManager()
     updateManager.onCheckForUpdate(({ hasUpdate }) => {
       if (hasUpdate) {
         updateManager.onUpdateReady(() => {
-          Taro.showModal({
+          taro.showModal({
             title: '更新提示',
             content: '新版本已经准备好，是否重启应用？',
             success: (res) => {
@@ -119,7 +119,7 @@ export function weappUpdate() {
         })
         updateManager.onUpdateFailed(() => {
           // 新的版本下载失败
-          Taro.showModal({
+          taro.showModal({
             title: '已经有新版本了哟~',
             content: '新版本已经上线啦~，请您删除当前小程序，重新搜索打开哟~'
           })
@@ -142,12 +142,12 @@ export const onLogin = {
     // type  'g':获取sessionKey  ‘s’:设置sessionKey
     if (type === 'g') {
       return {
-        sessionKey: Taro.getStorageSync('sessionKey'),
-        openId: Taro.getStorageSync('openId')
+        sessionKey: taro.getStorageSync('sessionKey'),
+        openId: taro.getStorageSync('openId')
       }
     } else {
-      Taro.setStorageSync('openId', openid);
-      Taro.setStorageSync('sessionKey', session_key);
+      taro.setStorageSync('openId', openid);
+      taro.setStorageSync('sessionKey', session_key);
     }
   },
   // 获取系统用户信息和微信用户信息
@@ -182,7 +182,7 @@ export const onLogin = {
   checkWeixinSession() {
     // 微信：检查登录态是否可用
     return new Promise((resolve, reject) => {
-      Taro.checkSession({
+      taro.checkSession({
         complete: (res) => {
           console.log(res);
         },
@@ -199,7 +199,7 @@ export const onLogin = {
   weixinLogin() {
     const _this = this;
     // 将 js_code 发送给后端获取 openId 和 sessionKey，并进行缓存
-    Taro.login({
+    taro.login({
       success: ({ code }) => {
         // 将 js_code 发送给后端获取 openId 和 sessionKey，并进行缓存
         request({
@@ -248,7 +248,7 @@ export const onLogin = {
         },
         onSuccess: (res) => {
           const { phone, giveVip } = res;
-          Taro.setStorageSync('phone', phone);
+          taro.setStorageSync('phone', phone);
           _this.giveVip = giveVip;
           _this.loginToDo();
         },
@@ -257,7 +257,7 @@ export const onLogin = {
         },
       });
     } else {
-      Taro.showToast({
+      taro.showToast({
         title: '已退出一键登录',
         icon: 'none'
       })
@@ -266,7 +266,7 @@ export const onLogin = {
   // 登录后续操作
   loginToDo() {
     this.getUserInfo(() => {
-      Taro.navigateBack();
+      taro.navigateBack();
       this.toDo();
       this.toDo = () => {};
     });
@@ -282,7 +282,7 @@ export const onLogin = {
       _this.toDo = cb
       if (!_this.showPrompt) {
         _this.showPrompt = true;
-        Taro.showModal({
+        taro.showModal({
           content: '还未登录',
           confirmText: '去登录',
           success({ confirm }) {
@@ -343,11 +343,11 @@ export const jump = (options) => {
   const { url, title = '', payload = {}, method = 'navigateTo', encode = true } = options;
 
   if (/^https?:\/\//.test(url)) {
-    Taro[method]({
+    taro[method]({
       url: urlStringify(PAGE_WEBVIEW, { url, title })
     })
   } else if (/^(\/package\d?)?\/pages\//.test(url)) {
-    Taro[method]({
+    taro[method]({
       url: urlStringify(url, payload, encode)
     })
   }

@@ -1,5 +1,5 @@
-import Taro from '@tarojs/taro';
-import { baseUrl } from '@/actions';
+import taro from '@/taro';
+import { hosts } from '@/actions';
 import { onLogin, toast } from '@/utils';
 
 const defaultErrMsg = '服务器升级中，稍等片刻哦';
@@ -24,14 +24,14 @@ export default function request(options) {
   } = options
 
   return new Promise((resolve, reject) => {
-    showLoading && Taro.showLoading(showLoading)
-    Taro.request({
+    showLoading && taro.showLoading(showLoading)
+    taro.request({
       credentials: 'include',
       enableCache: true,
-      url: `${baseUrl}${proxy}${url}`,
+      url: `${hosts}${proxy}${url}`,
       data,
       header: {
-        'Cookie': Taro.getStorageSync('Cookie'),
+        'Cookie': taro.getStorageSync('Cookie'),
         'content-type': 'application/json',
         ...header,
       },
@@ -42,15 +42,15 @@ export default function request(options) {
       success(res) {
         const { success, dataObject, errorCode, errorMessage } = res.data;
         if (res.statusCode === 200 && success) {
-          showLoading && !continually && Taro.hideLoading()
+          showLoading && !continually && taro.hideLoading()
           const cookie = res.header['Set-Cookie'];
           if (cookie && cookie.includes('shiroCookie')) {
-            Taro.setStorageSync('Cookie', res.header['Set-Cookie']);
+            taro.setStorageSync('Cookie', res.header['Set-Cookie']);
           }
           resolve(dataObject || {});
           onSuccess && onSuccess(dataObject || {});
         } else {
-          showLoading && Taro.hideLoading();
+          showLoading && taro.hideLoading();
           if (errorCode === 'UNLOGIN') {
             onLogin.resetLogined();
             loginPrompt && onLogin.prompt();
@@ -62,7 +62,7 @@ export default function request(options) {
         }
       },
       fail(res) {
-        showLoading && Taro.hideLoading()
+        showLoading && taro.hideLoading()
         reject(new Error(res.errMsg));
       }
     })
@@ -84,8 +84,8 @@ export const fileUpload = (options) => {
   } = options;
 
   return new Promise((resolve, reject) => {
-    Taro.uploadFile({
-      url: `${baseUrl}${url}`,
+    taro.uploadFile({
+      url: `${hosts}${url}`,
       filePath,
       formData,
       name: 'file',

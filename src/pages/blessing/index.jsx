@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import Taro, { useDidShow, useReady, useLoad } from '@tarojs/taro';
+import { useLoad, useReady, useDidShow, setNavigationBarTitle } from '@tarojs/taro';
 import { View } from '@tarojs/components';
 import styles from './index.less';
 
@@ -15,7 +15,7 @@ const Blessing = () => {
   useLoad((options) => {
     console.log(options);
     // 动态修改 navbar
-    Taro.setNavigationBarTitle({ title: 'demo' });
+    setNavigationBarTitle({ title: 'demo' });
   });
 
   useReady(() => {
@@ -34,4 +34,4 @@ const Blessing = () => {
   );
 }
 
-export default connect(({ global }) => ({ ...global }))(Blessing);
+export default connect(({ global }) => ({ ...global }), null, null, { forwardRef: true })(Blessing);

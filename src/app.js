@@ -1,14 +1,14 @@
 import { Component } from 'react';
 import { Provider } from 'react-redux';
-import Taro from '@tarojs/taro';
-import { weappUpdate, onLogin } from '@/utils';
-import { assetsUrl } from '@/actions';
+import taro from '@/taro';
+// import { weappUpdate, onLogin } from '@/utils';
 import store from './store';
 
 import 'taro-ui/dist/style/index.scss'
 import './app.less';
 
 // 设置小程序全局默认分享事件
+process.env.TARO_ENV === 'weapp' &&
 !function(){
   var PageTmp = Page;
 
@@ -20,7 +20,7 @@ import './app.less';
           let path;
 
           try {
-            const pages = Taro.getCurrentPages();
+            const pages = taro.getCurrentPages();
             const view = pages[pages.length - 1];
             path = view.data.root.uid.split('$taroTimestamp')[0];
           } catch (e) {
@@ -28,9 +28,9 @@ import './app.less';
           }
 
           return {
-            title: '新春送福，新人盲盒首抽免费',
+            title: '分享标题',
             path,
-            imageUrl: `${assetsUrl}/index/global_share.png`,
+            imageUrl: '',
           };
         }
       },
@@ -45,23 +45,23 @@ class App extends Component {
     /*
     * 对自定义导航栏数据进行计算
     * */
-    const menu = Taro.getMenuButtonBoundingClientRect();
-    const systemInfo = Taro.getSystemInfoSync();
-
-    store.dispatch({
-      type: 'global',
-      payload: {
-        navBarHeight: systemInfo.statusBarHeight + 44,
-        menuRight: systemInfo.screenWidth - menu.right,
-        menuTop: menu.top,
-        menuHeight: menu.height,
-      },
-    });
+    // const menu = taro.getMenuButtonBoundingClientRect();
+    // const systemInfo = taro.getSystemInfoSync();
+    //
+    // store.dispatch({
+    //   type: 'global',
+    //   payload: {
+    //     navBarHeight: systemInfo.statusBarHeight + 44,
+    //     menuRight: systemInfo.screenWidth - menu.right,
+    //     menuTop: menu.top,
+    //     menuHeight: menu.height,
+    //   },
+    // });
 
     // 检查版本更新
-    weappUpdate();
+    // weappUpdate();
     // 进入应用时检查服务端登录态(获取用户信息)
-    onLogin.getUserInfo();
+    // onLogin.getUserInfo();
     // 进入应用时检查weixinsession是否有效
     // onLogin.getSession();
   }
