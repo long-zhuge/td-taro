@@ -6,6 +6,7 @@
 /src/menus.json
 _roadhog-api-doc
 /vscode
+yarn.lock
 yarn-error.log
 /coverage
 pnpm-lock.yaml
