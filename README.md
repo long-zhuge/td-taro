@@ -171,3 +171,7 @@ import { showLoading, request, getStorageSync, hideLoading, setStorageSync, uplo
 ```
 import { useLoad, useReady, useDidShow } from '@tarojs/taro';
 ```
+
+### 7. 全局配置缺少 pages 字段，请检查！
+
+- [issues](https://github.com/NervJS/taro/issues/13544)
