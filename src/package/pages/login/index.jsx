@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { View } from '@tarojs/components';
 import { AtButton } from 'taro-ui';
-// import { onLogin } from '@/utils';
+import { jumpPayload } from '@/utils';
 import styles from './index.less';
 
 export default () => {
   useEffect(() => {
+    const res = jumpPayload();
     // onLogin.weixinLogin();
   }, []);
 

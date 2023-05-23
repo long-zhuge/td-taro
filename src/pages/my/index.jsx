@@ -9,7 +9,7 @@ const My = (props) => {
     userInfo = {},
   } = props;
 
-  console.log(userInfo)
+  // console.log(userInfo)
 
   return (
     <View className={styles.wrap}>
@@ -17,7 +17,13 @@ const My = (props) => {
         onClick={() => {
           // onLogin.prompt()
           // console.log(123);
-          jump({ url: '/package/pages/login/index' });
+          jump({
+            url: '/package/pages/login/index',
+            payload: {
+              name: 'test',
+              phone: '13888888888',
+            },
+          });
         }}
       >去登录</View>
     </View>

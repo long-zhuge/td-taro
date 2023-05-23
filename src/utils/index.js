@@ -319,37 +319,33 @@ export const toFixed = (number = 0) => {
 // jump 跳转 --《start》
 const PAGE_WEBVIEW = '/package2/pages/webview/index';
 
-export function stringify(payload = {}, encode = true) {
-  const arr = Object.keys(payload).filter(k => payload[k]).map(key =>
-    `${key}=${encode ? encodeURIComponent(payload[key]) : payload[key]}`
-  )
-  return arr.join('&');
-}
-
-function urlStringify(url, payload, encode = true) {
-  const params = stringify(payload, encode);
-
-  // NOTE 注意支付宝小程序跳转链接如果没有参数，就不要带上 ?，否则可能无法跳转
-  return params ? `${url}?${params}` : url
-}
-
 /**
  * NOTE 后端返回的 url 可能是网页链接，需要在 webview 中打开
  * 也可能是小程序自身的链接，只能用 navigate/redirect 之类的打开
  * 就需要有个地方统一判断处理
  * @ps：method的用法，https://taro-docs.jd.com/docs/apis/route/switchTab
+ * FAQ
+ *  1、页面简单数据传递，请在 url 中进行拼接处理
+ *  2、页面间复杂数据传递，请在 payload 中传递，并在被打开页面中使用 jumpPayload 获取数据
  */
 export const jump = (options) => {
-  const { url, title = '', payload = {}, method = 'navigateTo', encode = true } = options;
+  const { url = '', payload = {}, method = 'navigateTo', ...rest } = options;
 
-  if (/^https?:\/\//.test(url)) {
-    taro[method]({
-      url: urlStringify(PAGE_WEBVIEW, { url, title })
-    })
-  } else if (/^(\/package\d?)?\/pages\//.test(url)) {
-    taro[method]({
-      url: urlStringify(url, payload, encode)
-    })
-  }
-}
+  console.log('jump-params: ', options);
+
+  taro.preload(payload);
+  taro[method]({
+    url: /^https?:\/\//.test(url) ? PAGE_WEBVIEW : url,
+    ...rest
+  });
+};
+
+// 获取 Taro.preload 页面传递的数据
+export const jumpPayload = () => {
+  const res = taro.getCurrentInstance().preloadData;
+
+  console.log('jump-payload: ', res);
+
+  return res;
+};
 // jump 跳转 --《end》

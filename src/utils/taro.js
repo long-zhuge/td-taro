@@ -40,6 +40,10 @@ import {
   checkSession,
   getUpdateManager,
   getSystemInfoSync,
+
+  // 跳转预加载：https://taro-docs.jd.com/docs/optimized#%E8%B7%B3%E8%BD%AC%E9%A2%84%E5%8A%A0%E8%BD%BD
+  preload,
+  getCurrentInstance,
 } from '@tarojs/taro';
 
 export default {
@@ -74,4 +78,7 @@ export default {
   checkSession,
   getUpdateManager,
   getSystemInfoSync,
+
+  preload,
+  getCurrentInstance,
 };
